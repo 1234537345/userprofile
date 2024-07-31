@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Create User Profile</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width:335px;
+            margin: 20px auto;
+            border-radius: 5px;
+
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="date"]{
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 300px;
+
+            display: inline-block;
+        }
+
+        h2{
+        text-align: center;
+        margin: 8px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+ <h2>User profile creation</h2>
+
+<div class="form-container">
+        <form method="POST" action="" name="myForm">
+            {% csrf_token %}
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your name here" required="true">
+
+            <label for="DOB">Date of Birth:</label>
+            <input type="date" id="DOB" name="DOB" required="true">
+
+            <label for="bio">Bio Information:</label>
+            <input type="text" id="bio" name="bio" placeholder="Enter your biography" required="true"></input>
+
+            <label for="skills">Skills:</label>
+            <input type="text" id="skills" name="skills" required="true" >
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required="true" >
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" maxlength="10" required="true">
+            <button style="width:300px;background-color:green;height:40px;color:white;border:solid" onclick="showalert()">Submit</button>
+            <a href="{% url 'details' %}" class="btn btn-primary" style="width:300px" >View Details</a>
+</div>
+ </form>
+   <script>
+    function showalert() {
+      var formElements = document.forms['myForm'].elements;
+      var allFilled = true;
+
+      for (var i = 0; i < formElements.length; i++) {
+        if (formElements[i].type !== 'submit' && formElements[i].value === '') {
+          allFilled = false;
+          break;
+        }
+      }
+
+      if (allFilled) {
+        alert(' Submitted Successfully');
+      }
+    }
+  </script>
+
+
+</body>
+</html>

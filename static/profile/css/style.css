@@ -1,0 +1,6 @@
+body {
+    background-image: url("C:\Users\veena\Downloads\photo_3.jpg");
+    background-size: cover; /* This makes the background image cover the whole page */
+    background-repeat: no-repeat; /* This prevents the background image from repeating */
+    background-position: center center; /* This centers the background image */
+}
