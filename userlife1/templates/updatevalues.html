@@ -1,84 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Create User Profile</title>
+    <title>Resume UI</title>
+    <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
-        }
-        .form-container {
-            border: 1px solid #ccc;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
             padding: 20px;
-            width:335px;
-            margin: 20px auto;
-            border-radius: 5px;
         }
-        .form-container label {
+
+        .resume-container {
+            background: #fff;
+            padding: 40px 20px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .resume-header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+
+
+        .resume-content h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        .resume-content label {
             display: block;
-            margin-bottom: 5px;
+            margin-top: 10px;
             font-weight: bold;
         }
-        .form-container input[type="text"],
-        .form-container input[type="email"],
-        .form-container input[type="date"]{
-            width: 95%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            width: 300px;
 
-            display: inline-block;
-        }
-        .form-container input[type="submit"]
-         {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            width:300px;
-            font-size: 16px;
-            margin: 8px 1px 1px -1px;
+        .resume-content input,
+        .resume-content textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-        }
-        h2{
-        text-align: center;
-        margin: 8px;
+            margin-top: 5px;
         }
 
+        .resume-content textarea {
+            resize: vertical;
+        }
+
+        .resume-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .resume-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        #submit-btn {
+            background-color: #4caf50;
+            color: #fff;
+        }
     </style>
-
 </head>
 <body>
- <h2>User profile creation</h2>
-
-<div class="form-container">
-        <form method="POST" action="">
+    <div class="resume-container">
+        <form method="post" >
             {% csrf_token %}
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" name="fullname" placeholder="Enter your name here" value="{{p.fullname}}"  >
+            <section class="resume-content">
+                <h3>About me</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="aboutme" style="width:750px" value="{{p.aboutme}}">
+                    </div>
+                    <h3>Objective</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="objective" style="width:750px" value="{{p.objective}}">
+                    </div>
+                <h2>Personal Information</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Full name:</label>
+                        <input type="text" name="fullname" value="{{p.fullname}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Phone:</label>
+                        <input type="text" name="phone" value="{{p.phone}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label >Address:</label>
+                        <input type="text"  name="address" value="{{p.address}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label >Email:</label>
+                        <input type="email"  name="email" value="{{p.email}}">
+                    </div>
+                </div>
 
-            <label for="DOB">Date of Birth:</label>
-            <input type="date" id="DOB" name="DOB" value="{{p.DOB}}">
+                <h2>Education Details</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Graduation</label>
+                        <input type="text" name="graduation" value="{{p.graduation}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label>University/College</label>
+                        <input type="text" name="universityCollege" value="{{p.universityCollege}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Degree/Certification</label>
+                        <input type="text" name="DegreeCertification" value="{{p.DegreeCertification}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Course Title</label>
+                        <input type="text" name="coursetitle" value="{{p.coursetitle}}">
+                    </div>
+                </div>
 
-            <label for="bio">Bio Information:</label>
-            <input type="text" id="bio" name="bio" placeholder="Enter your biography" value="{{p.bio}}"></input>
+                <h2>Skills</h2>
+                <input type="text" name="skills" value="{{p.skills}}">
 
-            <label for="skills">Skills:</label>
-            <input type="text" id="skills" name="skills" value="{{p.skills}}">
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{p.email}}">
-
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" value="{{p.phone}}">
-            <input type="submit" value="submit">
-
-
-</div>
- </form>
+                <h2>Projects</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Project Title</label>
+                        <input type="text" name="projecttitle" value="{{p.projecttitle}}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Describe your project</label>
+                        <textarea name="projectdescription" rows="3" style="resize: none;">{{p.projectdescription}}</textarea>
+                        <label>Add images or links of projects</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="file"  name="prjectimg" value="{{p.prjectimg}}">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="url"  name="prjectlink" placeholder="https://" value="{{p.prjectlink}}">
+                    </div>
+                </div>
+            </section>
+            <div class="resume-buttons">
+                <button type="submit" >Submit</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
